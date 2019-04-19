@@ -1,0 +1,12 @@
+{
+  "kind": "SelfSubjectAccessReview",
+  "apiVersion": "authorization.k8s.io/v1",
+  "spec": {
+    "resourceAttributes": {
+      "namespace": "default",
+      "verb": "create",
+      "group": "extensions",
+      "resource": "deployments"
+    }
+  }
+}
